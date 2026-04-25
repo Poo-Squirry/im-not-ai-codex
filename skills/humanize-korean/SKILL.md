@@ -7,18 +7,18 @@ description: Use when the user asks to make Korean AI-generated writing sound na
 
 Codex plugin port of `epoko77-ai/im-not-ai`. Detect Korean AI-writing tells, rewrite only the affected style spans, then audit that meaning is preserved.
 
-Source baseline:
+Original source baseline:
 
-- Upstream repo: `https://github.com/epoko77-ai/im-not-ai`
-- Upstream version label: `v1.3.1`
-- Upstream base commit: `2fc2e3b62dcee40af4d9b7d239ae0a7a463b2cee`
+- Original repo: `https://github.com/epoko77-ai/im-not-ai`
+- Original version label: `v1.3.1`
+- Original base commit: `2fc2e3b62dcee40af4d9b7d239ae0a7a463b2cee`
 
 ## First Response
 
 When this skill starts, print this line before continuing:
 
 ```text
-humanize-korean codex-port v0.1.0 / upstream im-not-ai v1.3.1 / voice profile {미주입|주입(<author-context.yaml 경로>)} / run_id: {YYYY-MM-DD-NNN}
+humanize-korean codex-port v0.1.0 / original im-not-ai v1.3.1 / voice profile {미주입|주입(<author-context.yaml 경로>)} / run_id: {YYYY-MM-DD-NNN}
 ```
 
 Then continue the workflow in the same response or turn.

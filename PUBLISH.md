@@ -64,18 +64,10 @@ AI 기술을 통해 우리는 다양한 문제를 해결할 수 있을 것으로
 - 핵심 의미는 유지하고 문체만 다듬는다.
 - detection, rewrite, audit, review 요약을 보여준다.
 
-## 5. Upstream README PR
+## 5. 공식 README 링크 PR 상태
 
-plugin repo가 public이고 테스트까지 끝난 뒤, `epoko77-ai/im-not-ai`에는 README 링크만 추가하는 작은 PR을 올립니다.
+원본 공식 repo에는 README 링크만 추가하는 작은 PR을 열어두었습니다.
 
-```md
-### 방법 D - Codex Plugin (community)
-
-Codex Desktop/CLI에서 사용할 수 있는 community plugin 포트입니다.
-
-- Repo: https://github.com/Poo-Squirry/im-not-ai-codex
-- 원본 taxonomy/playbook을 유지하고 Codex plugin/skill 구조에 맞게 어댑터화했습니다.
-- 공식 Claude Code 버전과 별도로 유지됩니다.
-```
-
-PR은 작게 유지하는 게 좋습니다. 그래야 upstream maintainer가 Codex 유지보수까지 떠안는 느낌 없이 링크만 검토할 수 있습니다.
+- PR: https://github.com/epoko77-ai/im-not-ai/pull/12
+- 범위: README에 Codex community plugin 링크와 설치 명령 추가
+- 의도: 원본 Claude Code 버전은 그대로 두고, Codex 사용자는 이 별도 plugin repo로 안내
