@@ -1,0 +1,81 @@
+# Publish Checklist
+
+대상 GitHub repo를 `Poo-Squirry/im-not-ai-codex`로 가정한 체크리스트입니다. 다른 repo로 올릴 거면 owner/name만 바꾸면 됩니다.
+
+## 1. GitHub Repo 만들기
+
+빈 public repository를 만듭니다.
+
+```text
+https://github.com/Poo-Squirry/im-not-ai-codex
+```
+
+이 폴더를 그대로 push할 예정이면 GitHub에서 README나 LICENSE를 자동 생성하지 않는 쪽이 편합니다.
+
+## 2. Plugin Package Push
+
+이 `im-not-ai-codex` 폴더 안에서:
+
+```bash
+git init
+git branch -M main
+git add .
+git commit -m "Create Codex plugin port for im-not-ai"
+git remote add origin git@github.com:Poo-Squirry/im-not-ai-codex.git
+git push -u origin main
+```
+
+SSH 설정이 안 되어 있으면 HTTPS remote를 쓰면 됩니다.
+
+```bash
+git remote add origin https://github.com/Poo-Squirry/im-not-ai-codex.git
+```
+
+## 3. Marketplace 설치 테스트
+
+push 후 Codex plugin marketplace로 추가합니다.
+
+```bash
+codex plugin marketplace add Poo-Squirry/im-not-ai-codex
+```
+
+Codex를 재시작하고 Plugins 화면에서 `im-not-ai Codex`를 선택한 뒤 `Humanize Korean`을 설치합니다.
+
+로컬에서 먼저 테스트하려면:
+
+```bash
+codex plugin marketplace add /absolute/path/to/im-not-ai-codex
+```
+
+## 4. Smoke Test
+
+새 Codex 세션에서 이렇게 테스트합니다.
+
+```text
+humanize-korean으로 이 글 AI 티 없애줘:
+
+AI 기술을 통해 우리는 다양한 문제를 해결할 수 있을 것으로 보인다. 결론적으로 이는 시사하는 바가 크다.
+```
+
+기대 동작:
+
+- `humanize-korean codex-port v0.1.0` 시작 라인이 나온다.
+- `_workspace/{run_id}/` 산출물이 생긴다.
+- 핵심 의미는 유지하고 문체만 다듬는다.
+- detection, rewrite, audit, review 요약을 보여준다.
+
+## 5. Upstream README PR
+
+plugin repo가 public이고 테스트까지 끝난 뒤, `epoko77-ai/im-not-ai`에는 README 링크만 추가하는 작은 PR을 올립니다.
+
+```md
+### 방법 D - Codex Plugin (community)
+
+Codex Desktop/CLI에서 사용할 수 있는 community plugin 포트입니다.
+
+- Repo: https://github.com/Poo-Squirry/im-not-ai-codex
+- 원본 taxonomy/playbook을 유지하고 Codex plugin/skill 구조에 맞게 어댑터화했습니다.
+- 공식 Claude Code 버전과 별도로 유지됩니다.
+```
+
+PR은 작게 유지하는 게 좋습니다. 그래야 upstream maintainer가 Codex 유지보수까지 떠안는 느낌 없이 링크만 검토할 수 있습니다.

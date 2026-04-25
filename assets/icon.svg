@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Humanize Korean">
+  <rect width="256" height="256" rx="56" fill="#111827"/>
+  <path d="M64 70h38v44h52V70h38v116h-38v-42h-52v42H64V70Z" fill="#F9FAFB"/>
+  <path d="M66 205h124" stroke="#38BDF8" stroke-width="16" stroke-linecap="round"/>
+  <path d="M190 205c0-28-24-52-54-52" stroke="#38BDF8" stroke-width="16" stroke-linecap="round" fill="none"/>
+</svg>

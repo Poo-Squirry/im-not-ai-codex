@@ -1,0 +1,47 @@
+{
+  "name": "im-not-ai-codex",
+  "version": "0.1.0",
+  "description": "Codex plugin port of Humanize KR, a Korean AI-tell detection and style rewriting workflow based on epoko77-ai/im-not-ai v1.3.1.",
+  "author": {
+    "name": "Poo-Squirry",
+    "url": "https://github.com/Poo-Squirry"
+  },
+  "homepage": "https://github.com/Poo-Squirry/im-not-ai-codex",
+  "repository": "https://github.com/Poo-Squirry/im-not-ai-codex",
+  "license": "MIT",
+  "keywords": [
+    "korean",
+    "writing",
+    "rewriting",
+    "humanize",
+    "ai-tell",
+    "codex",
+    "skill"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Humanize Korean",
+    "shortDescription": "Korean AI-tell detection and natural style rewriting",
+    "longDescription": "Use Humanize Korean to detect Korean AI-writing tells, rewrite only the affected style spans, and audit that meaning, numbers, names, and quotations remain intact. This is a community Codex plugin port of epoko77-ai/im-not-ai.",
+    "developerName": "Poo-Squirry",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/Poo-Squirry/im-not-ai-codex",
+    "privacyPolicyURL": "https://github.com/Poo-Squirry/im-not-ai-codex#privacy",
+    "termsOfServiceURL": "https://github.com/Poo-Squirry/im-not-ai-codex#terms",
+    "defaultPrompt": [
+      "humanize-korean으로 이 글 AI 티 없애줘:",
+      "Use Humanize Korean to rewrite this Korean draft without changing meaning."
+    ],
+    "brandColor": "#111827",
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/icon.svg",
+    "screenshots": [
+      "./assets/social-preview.png"
+    ]
+  }
+}
