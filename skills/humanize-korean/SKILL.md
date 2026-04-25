@@ -18,7 +18,7 @@ Original source baseline:
 When this skill starts, print this line before continuing:
 
 ```text
-humanize-korean codex-port v0.1.0 / original im-not-ai v1.3.1 / voice profile {미주입|주입(<author-context.yaml 경로>)} / run_id: {YYYY-MM-DD-NNN}
+humanize-korean codex-port v1.3.1 / original im-not-ai v1.3.1 / voice profile {미주입|주입(<author-context.yaml 경로>)} / run_id: {YYYY-MM-DD-NNN}
 ```
 
 Then continue the workflow in the same response or turn.

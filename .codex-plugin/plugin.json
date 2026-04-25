@@ -1,7 +1,7 @@
 {
   "name": "im-not-ai-codex",
-  "version": "0.1.0",
-  "description": "Codex plugin port of Humanize KR, a Korean AI-tell detection and style rewriting workflow based on epoko77-ai/im-not-ai v1.3.1.",
+  "version": "1.3.1",
+  "description": "Codex plugin port of Humanize KR, a Korean AI-tell detection and style rewriting workflow version-synced with epoko77-ai/im-not-ai v1.3.1.",
   "author": {
     "name": "Poo-Squirry",
     "url": "https://github.com/Poo-Squirry"

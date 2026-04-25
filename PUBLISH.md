@@ -59,7 +59,7 @@ AI 기술을 통해 우리는 다양한 문제를 해결할 수 있을 것으로
 
 기대 동작:
 
-- `humanize-korean codex-port v0.1.0` 시작 라인이 나온다.
+- `humanize-korean codex-port v1.3.1` 시작 라인이 나온다.
 - `_workspace/{run_id}/` 산출물이 생긴다.
 - 핵심 의미는 유지하고 문체만 다듬는다.
 - detection, rewrite, audit, review 요약을 보여준다.

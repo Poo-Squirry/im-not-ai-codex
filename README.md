@@ -11,8 +11,14 @@
 - 원본 프로젝트: `epoko77-ai/im-not-ai`
 - Codex plugin name: `im-not-ai-codex`
 - Codex skill name: `humanize-korean`
-- Plugin version: `0.1.0`
-- Original content version: `v1.3.1`
+- Plugin version: `v1.3.1`
+- Original version: `v1.3.1`
+
+## 버전 정책
+
+이 Codex 포트는 원본 `epoko77-ai/im-not-ai`의 버전을 따라갑니다. 예를 들어 원본이 `v1.3.1`이면 이 plugin도 `v1.3.1`로 배포합니다. 나중에 원본이 `v1.3.2`나 `v1.4.0`으로 올라가면, 원본 변경분을 반영한 뒤 같은 버전으로 새 release를 만듭니다.
+
+즉 `im-not-ai-codex v1.3.1`은 "원본 `im-not-ai v1.3.1`을 Codex plugin 구조로 옮긴 배포판"이라는 뜻입니다.
 
 ## 설치
 
