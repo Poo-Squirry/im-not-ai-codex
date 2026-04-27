@@ -1,13 +1,13 @@
 {
   "name": "im-not-ai-codex",
-  "version": "1.5.0",
-  "description": "Codex plugin port of Humanize KR, a Korean AI-tell detection and style rewriting workflow version-synced with epoko77-ai/im-not-ai v1.5.0.",
+  "version": "1.5.1",
+  "description": "Codex plugin port of Humanize KR, a Korean AI-tell detection and style rewriting workflow version-synced with epoko77-ai/im-not-ai v1.5.1.",
   "author": {
-    "name": "Poo-Squirry",
-    "url": "https://github.com/Poo-Squirry"
+    "name": "Squirbie",
+    "url": "https://github.com/Squirbie"
   },
-  "homepage": "https://github.com/Poo-Squirry/im-not-ai-codex",
-  "repository": "https://github.com/Poo-Squirry/im-not-ai-codex",
+  "homepage": "https://github.com/Squirbie/im-not-ai-codex",
+  "repository": "https://github.com/Squirbie/im-not-ai-codex",
   "license": "MIT",
   "keywords": [
     "korean",
@@ -22,17 +22,17 @@
   "interface": {
     "displayName": "Humanize Korean",
     "shortDescription": "Korean AI-tell detection with v1.5 fast and strict modes",
-    "longDescription": "Use Humanize Korean to detect Korean AI-writing tells, rewrite only the affected style spans, and audit that meaning, numbers, names, and quotations remain intact. This community Codex plugin port follows epoko77-ai/im-not-ai v1.5.0, including the monolith fast path and strict 5-role workflow.",
-    "developerName": "Poo-Squirry",
+    "longDescription": "Use Humanize Korean to detect Korean AI-writing tells, rewrite only the affected style spans, and audit that meaning, numbers, names, and quotations remain intact. This community Codex plugin port follows epoko77-ai/im-not-ai v1.5.1, including the monolith fast path and strict 5-role workflow.",
+    "developerName": "Squirbie",
     "category": "Productivity",
     "capabilities": [
       "Interactive",
       "Read",
       "Write"
     ],
-    "websiteURL": "https://github.com/Poo-Squirry/im-not-ai-codex",
-    "privacyPolicyURL": "https://github.com/Poo-Squirry/im-not-ai-codex#privacy",
-    "termsOfServiceURL": "https://github.com/Poo-Squirry/im-not-ai-codex#terms",
+    "websiteURL": "https://github.com/Squirbie/im-not-ai-codex",
+    "privacyPolicyURL": "https://github.com/Squirbie/im-not-ai-codex#privacy",
+    "termsOfServiceURL": "https://github.com/Squirbie/im-not-ai-codex#terms",
     "defaultPrompt": [
       "humanize-korean으로 이 글 AI 티 없애줘:",
       "Use Humanize Korean to rewrite this Korean draft without changing meaning."

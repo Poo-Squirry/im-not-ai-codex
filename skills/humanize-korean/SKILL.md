@@ -1,7 +1,7 @@
 ---
 name: humanize-korean
-version: "1.5.0"
-description: Use when the user asks to make Korean AI-generated writing sound naturally human while preserving meaning. Trigger phrases include "AI 티 없애줘", "GPT 문체 제거", "사람이 쓴 것처럼 윤문", "번역투 제거", "한글 AI 윤문", "AI 글 사람처럼", "ChatGPT 티 제거", "휴머나이저", and "humanize Korean". This Codex skill is a community plugin port of epoko77-ai/im-not-ai v1.5.0 with fast monolith and strict workflows.
+version: "1.5.1"
+description: Use when the user asks to make Korean AI-generated writing sound naturally human while preserving meaning. Trigger phrases include "AI 티 없애줘", "GPT 문체 제거", "사람이 쓴 것처럼 윤문", "번역투 제거", "한글 AI 윤문", "AI 글 사람처럼", "ChatGPT 티 제거", "휴머나이저", and "humanize Korean". This Codex skill is a community plugin port of epoko77-ai/im-not-ai v1.5.1 with fast monolith and strict workflows.
 ---
 
 # Humanize Korean for Codex
@@ -11,16 +11,16 @@ Codex plugin port of `epoko77-ai/im-not-ai`. Detect Korean AI-writing tells, rew
 Original source baseline:
 
 - Original repo: `https://github.com/epoko77-ai/im-not-ai`
-- Original version label: `v1.5.0`
-- Original release tag commit: `66f8399cff286d9758bf86c2ba3aa222ecb1a4f4`
-- Current upstream docs commit checked during sync: `3fab1d8451170f10270b3168a97dd05fca010f6f`
+- Original version label: `v1.5.1`
+- Original release tag: none yet; upstream `main` carries the v1.5.1 taxonomy update
+- Current upstream commit checked during sync: `f6f208245d689744c2a3a79d74a2f79ba626ef62`
 
 ## First Response
 
 When this skill starts, print this line before continuing:
 
 ```text
-humanize-korean codex-port v1.5.0 / original im-not-ai v1.5.0 / {fast|strict} mode / run_id: {YYYY-MM-DD-NNN}
+humanize-korean codex-port v1.5.1 / original im-not-ai v1.5.1 / {fast|strict} mode / run_id: {YYYY-MM-DD-NNN}
 ```
 
 Then continue the workflow in the same response or turn.

@@ -3,14 +3,13 @@
 This Codex plugin is a community port of:
 
 - Original repo: https://github.com/epoko77-ai/im-not-ai
-- Original version label: `v1.5.0`
-- Original release tag: `v1.5.0`
-- Original release tag commit: `66f8399cff286d9758bf86c2ba3aa222ecb1a4f4`
-- Upstream docs commit checked during this sync: `3fab1d8451170f10270b3168a97dd05fca010f6f`
-- Codex plugin version: `v1.5.0`
-- Sync date: `2026-04-27`
+- Original version label: `v1.5.1`
+- Original release tag: none yet; upstream `main` carries the v1.5.1 taxonomy update
+- Original upstream commit used for this sync: `f6f208245d689744c2a3a79d74a2f79ba626ef62`
+- Codex plugin version: `v1.5.1`
+- Sync date: `2026-04-28`
 
-`v1.5.0` runtime files are identical between the release tag and upstream `main`; after the tag, upstream changed `README.md` only. This port therefore syncs the v1.5 runtime files and also reflects the current upstream README notes.
+Upstream has not published a GitHub release/tag for `v1.5.1` yet. The version label comes from upstream `main` commit `f6f2082`, which updates the taxonomy title and version history to `v1.5.1`.
 
 ## File Mapping
 
@@ -37,6 +36,14 @@ Upstream v1.5 added:
 
 This Codex port preserves both files and adapts the workflow so Codex runs the monolith behavior inside the `humanize-korean` skill instead of calling Claude Code's `Agent` tool.
 
+## v1.5.1 Sync Notes
+
+Upstream v1.5.1 changed one runtime reference file:
+
+- `ai-tell-taxonomy.md`
+
+The update adds Category E pattern `E-4. 단문 일변도 (복문·중문 부재) [S2]`, a rhythm tell for AI output that overuses short simple sentences without compound or complex sentence variation.
+
 ## Codex Adaptation Notes
 
 - Claude Code slash commands are not copied as runtime commands. Codex uses the `humanize-korean` skill trigger instead.
@@ -48,4 +55,4 @@ This Codex port preserves both files and adapts the workflow so Codex runs the m
 
 ## Version Policy
 
-This Codex plugin intentionally follows the original `epoko77-ai/im-not-ai` version number. A release named `v1.5.0` means this repository contains the Codex plugin port for original `im-not-ai v1.5.0`.
+This Codex plugin intentionally follows the original `epoko77-ai/im-not-ai` version number. A release named `v1.5.1` means this repository contains the Codex plugin port for original `im-not-ai v1.5.1` taxonomy update.

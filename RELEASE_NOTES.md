@@ -1,6 +1,39 @@
 # Release Notes
 
-이 repo는 원본 `epoko77-ai/im-not-ai`의 버전을 그대로 따라갑니다. `im-not-ai-codex v1.5.0`은 원본 `im-not-ai v1.5.0`을 Codex plugin/skill 구조로 옮긴 배포판입니다.
+이 repo는 원본 `epoko77-ai/im-not-ai`의 버전을 그대로 따라갑니다. `im-not-ai-codex v1.5.1`은 원본 `im-not-ai v1.5.1` taxonomy update를 Codex plugin/skill 구조로 옮긴 배포판입니다.
+
+## v1.5.1 — Codex plugin port for upstream taxonomy update
+
+Codex 포트 변경:
+
+- GitHub owner rename 반영: `Poo-Squirry` -> `Squirbie`.
+- Codex plugin manifest version을 `1.5.1`로 설정.
+- 원본 upstream `main` commit `f6f2082`의 taxonomy 변경을 반영.
+- `ai-tell-taxonomy.md`에 새 패턴 `E-4. 단문 일변도 (복문·중문 부재) [S2]` 추가.
+- README, SOURCE, PUBLISH, skill metadata의 버전과 설치 경로를 갱신.
+
+원본 기준:
+
+- Original repo: https://github.com/epoko77-ai/im-not-ai
+- Original upstream commit: `f6f208245d689744c2a3a79d74a2f79ba626ef62`
+- Original GitHub release: 아직 `v1.5.1` release/tag 없음. 현재 최신 release는 `v1.5.0`.
+
+### Original v1.5.1 Notes
+
+원본 `v1.5.1`은 taxonomy 단일 파일 업데이트입니다. Category E(리듬)에 `E-4 단문 일변도 (복문·중문 부재)` [S2]가 신설됐습니다.
+
+핵심 관찰:
+
+- 인간 필자는 단문과 복문을 무의식적으로 섞어 호흡을 만듭니다.
+- AI가 "간결하게" 쓰라는 지시를 받으면 단문만 줄지어 늘어놓는 경우가 생깁니다.
+- 이때 문장 길이만 문제가 아니라, 주어-서술어 1쌍짜리 단문 구조가 반복되는 것 자체가 시그니처가 됩니다.
+- `E-1`이 문장 길이 표준편차를 보는 패턴이라면, `E-4`는 문장 구조의 단조성을 보는 짝패턴입니다.
+
+처방:
+
+- 인접한 단문 2~3개를 연결어미("-며", "-고", "-는데", "-면서", "-자"), 관형절, 인용절, 조건절로 묶어 복문화합니다.
+- 단문 비중을 60% 전후로 조절하고 복문·중문을 30% 이상 섞습니다.
+- 단문은 강조, 전환, 결정타에만 의도적으로 남깁니다.
 
 ## v1.5.0 — Codex plugin port for im-not-ai v1.5.0
 

@@ -1,13 +1,13 @@
 # Publish Checklist
 
-대상 GitHub repo를 `Poo-Squirry/im-not-ai-codex`로 가정한 체크리스트입니다. 다른 repo로 올릴 거면 owner/name만 바꾸면 됩니다.
+대상 GitHub repo를 `Squirbie/im-not-ai-codex`로 가정한 체크리스트입니다. 다른 repo로 올릴 거면 owner/name만 바꾸면 됩니다.
 
 ## 1. GitHub Repo 만들기
 
 빈 public repository를 만듭니다.
 
 ```text
-https://github.com/Poo-Squirry/im-not-ai-codex
+https://github.com/Squirbie/im-not-ai-codex
 ```
 
 이 폴더를 그대로 push할 예정이면 GitHub에서 README나 LICENSE를 자동 생성하지 않는 쪽이 편합니다.
@@ -21,14 +21,14 @@ git init
 git branch -M main
 git add .
 git commit -m "Create Codex plugin port for im-not-ai"
-git remote add origin git@github.com:Poo-Squirry/im-not-ai-codex.git
+git remote add origin git@github.com:Squirbie/im-not-ai-codex.git
 git push -u origin main
 ```
 
 SSH 설정이 안 되어 있으면 HTTPS remote를 쓰면 됩니다.
 
 ```bash
-git remote add origin https://github.com/Poo-Squirry/im-not-ai-codex.git
+git remote add origin https://github.com/Squirbie/im-not-ai-codex.git
 ```
 
 ## 3. Marketplace 설치 테스트
@@ -36,7 +36,7 @@ git remote add origin https://github.com/Poo-Squirry/im-not-ai-codex.git
 push 후 Codex plugin marketplace로 추가합니다.
 
 ```bash
-codex plugin marketplace add Poo-Squirry/im-not-ai-codex
+codex plugin marketplace add Squirbie/im-not-ai-codex
 ```
 
 Codex를 재시작하고 Plugins 화면에서 `im-not-ai Codex`를 선택한 뒤 `Humanize Korean`을 설치합니다.
@@ -59,7 +59,7 @@ AI 기술을 통해 우리는 다양한 문제를 해결할 수 있을 것으로
 
 기대 동작:
 
-- `humanize-korean codex-port v1.5.0` 시작 라인이 나온다.
+- `humanize-korean codex-port v1.5.1` 시작 라인이 나온다.
 - `_workspace/{run_id}/` 산출물이 생긴다.
 - 핵심 의미는 유지하고 문체만 다듬는다.
 - 기본 fast mode에서는 `final.md`와 `summary.md`를 만들고, 변경률·등급·자체검증 요약을 보여준다.
