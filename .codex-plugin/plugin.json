@@ -1,7 +1,7 @@
 {
   "name": "im-not-ai-codex",
-  "version": "1.3.1",
-  "description": "Codex plugin port of Humanize KR, a Korean AI-tell detection and style rewriting workflow version-synced with epoko77-ai/im-not-ai v1.3.1.",
+  "version": "1.5.0",
+  "description": "Codex plugin port of Humanize KR, a Korean AI-tell detection and style rewriting workflow version-synced with epoko77-ai/im-not-ai v1.5.0.",
   "author": {
     "name": "Poo-Squirry",
     "url": "https://github.com/Poo-Squirry"
@@ -21,8 +21,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Humanize Korean",
-    "shortDescription": "Korean AI-tell detection and natural style rewriting",
-    "longDescription": "Use Humanize Korean to detect Korean AI-writing tells, rewrite only the affected style spans, and audit that meaning, numbers, names, and quotations remain intact. This is a community Codex plugin port of epoko77-ai/im-not-ai.",
+    "shortDescription": "Korean AI-tell detection with v1.5 fast and strict modes",
+    "longDescription": "Use Humanize Korean to detect Korean AI-writing tells, rewrite only the affected style spans, and audit that meaning, numbers, names, and quotations remain intact. This community Codex plugin port follows epoko77-ai/im-not-ai v1.5.0, including the monolith fast path and strict 5-role workflow.",
     "developerName": "Poo-Squirry",
     "category": "Productivity",
     "capabilities": [

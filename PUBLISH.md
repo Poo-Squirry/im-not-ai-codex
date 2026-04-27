@@ -59,10 +59,23 @@ AI 기술을 통해 우리는 다양한 문제를 해결할 수 있을 것으로
 
 기대 동작:
 
-- `humanize-korean codex-port v1.3.1` 시작 라인이 나온다.
+- `humanize-korean codex-port v1.5.0` 시작 라인이 나온다.
 - `_workspace/{run_id}/` 산출물이 생긴다.
 - 핵심 의미는 유지하고 문체만 다듬는다.
-- detection, rewrite, audit, review 요약을 보여준다.
+- 기본 fast mode에서는 `final.md`와 `summary.md`를 만들고, 변경률·등급·자체검증 요약을 보여준다.
+
+정밀 모드도 확인하려면:
+
+```text
+humanize-korean으로 이 글 AI 티 없애줘 --strict:
+
+AI 기술을 통해 우리는 다양한 문제를 해결할 수 있을 것으로 보인다. 결론적으로 이는 시사하는 바가 크다.
+```
+
+기대 동작:
+
+- strict mode로 시작한다.
+- `02_detection.json`, `03_rewrite.md`, `04_fidelity_audit.json`, `05_naturalness_review.json` 산출물이 생긴다.
 
 ## 5. 공식 README 링크 PR 상태
 

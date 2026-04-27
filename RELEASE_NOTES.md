@@ -1,6 +1,89 @@
 # Release Notes
 
-이 repo는 원본 `epoko77-ai/im-not-ai`의 버전을 그대로 따라갑니다. `im-not-ai-codex v1.3.1`은 원본 `im-not-ai v1.3.1`을 Codex plugin/skill 구조로 옮긴 배포판입니다.
+이 repo는 원본 `epoko77-ai/im-not-ai`의 버전을 그대로 따라갑니다. `im-not-ai-codex v1.5.0`은 원본 `im-not-ai v1.5.0`을 Codex plugin/skill 구조로 옮긴 배포판입니다.
+
+## v1.5.0 — Codex plugin port for im-not-ai v1.5.0
+
+Codex 포트 변경:
+
+- Codex plugin manifest version을 `1.5.0`으로 설정.
+- `humanize-korean` Codex skill을 공식 v1.5 fast/strict 모드 정책에 맞게 재작성.
+- 원본 `v1.5.0` taxonomy, rewriting playbook, quick rules, role reference를 plugin 내부에 보존.
+- 원본 v1.5에서 삭제된 voice profile/candidate pool 계열 reference 파일을 Codex 포트에서도 제거.
+- `humanize-monolith` role reference와 `quick-rules.md`를 추가.
+- Claude Code `Agent`/`TeamCreate` 호출은 Codex skill 내부 role pass로 실행하도록 문서화.
+- README, SOURCE, PUBLISH 문서를 v1.5.0 기준으로 갱신.
+
+원본 기준:
+
+- Original repo: https://github.com/epoko77-ai/im-not-ai
+- Original release: https://github.com/epoko77-ai/im-not-ai/releases/tag/v1.5.0
+- Original release tag commit: `66f8399cff286d9758bf86c2ba3aa222ecb1a4f4`
+- Upstream docs commit checked during this sync: `3fab1d8451170f10270b3168a97dd05fca010f6f`
+
+### Original v1.5.0 Notes
+
+v1.2(voice profile), v1.3(candidate pool), v1.4(역할별 모델 분산)이 모두 핫패스 비용을 잡지 못한 것이 검증됐습니다. 5,000자 입력 윤문 wall-clock이 25분에 달했고, v1.4의 모델 다운그레이드만으로는 detector 1콜이 여전히 8분이었습니다.
+
+원본 릴리즈의 핵심 진단은 모델이 아니라 **에이전트 간 컨텍스트 재로드 + 에이전트 내부 도구 호출 chain 누적**이 병목이었다는 점입니다. v1.5는 이 문제를 정면으로 줄이는 릴리즈입니다.
+
+#### 1. v1.2~v1.4 폐기 (롤백)
+
+- 5인 에이전트 정의를 v1.1 commit `f25ee64` 시점으로 복원.
+- voice profile, candidate pool, 권한 위계 절 제거.
+- reference 4개 파일 삭제: `author-context-schema.md`, `pattern-candidates.md`, `promotion-checklist.md`, `sample-collection.md`.
+
+#### 2. Monolith Fast Path 신설 (디폴트)
+
+- `humanize-monolith` 에이전트(opus)가 한 콜 안에서 탐지·윤문·자체검증을 일괄 처리.
+- 도구 호출 4~5회 캡: Read 입력, Read 룰북, Write final, Write summary 중심.
+- `quick-rules.md` 신설: 본진 taxonomy에서 S1·S2 핵심 패턴만 추린 슬림 룰북.
+
+#### 3. Strict 모드 보존 (`--strict` 또는 자동 승급)
+
+- v1.1 5인 파이프라인을 strict 백본으로 유지.
+- 8,000자+ 입력은 자동 승급.
+- 부분 재실행("이 카테고리만 다시", "2차 윤문")도 strict로 자동 전환.
+
+#### 4. 분류 체계 본진 유지
+
+- `ai-tell-taxonomy.md`의 v1.2~v1.3.1 발굴 신규 패턴(C-9, C-10, D-7, H-3, I-3, I-4 보강 등)은 모두 보존.
+- voice profile 종속 절만 제거.
+
+#### 검증 결과 (같은 칼럼 2,604자)
+
+| 항목 | v1.4 (detector haiku 1콜) | v1.5 (monolith opus 1콜) |
+|---|---|---|
+| Wall-clock | 7분 58초 | **3분 28초** |
+| 도구 호출 | 12회 | **4회** |
+| 토큰 | 113,621 | 68,045 |
+| 윤문 등급 | (단계 1만 끝, 미완) | **A (자체검증 6/6, 변경률 22%)** |
+
+5인 파이프라인 25분에서 monolith 3.5분으로 약 86% 단축. opus로 모델을 올리고도 도구 호출 chain을 압축한 것이 결정적이었다는 결론입니다.
+
+#### 호환성 안내
+
+- v1.3.1 사용자: `author-context.yaml` voice profile은 더 이상 작동하지 않습니다. 필요하면 v1.6에서 monolith의 가벼운 옵션으로 재도입을 검토합니다.
+- 슬래시 커맨드 `/humanize`, `/humanize-redo`는 원본 Claude Code판에서 그대로 유지됩니다. 내부에서 v1.5 fast/strict 분기를 자동 처리합니다.
+- Codex 포트에서는 slash command 대신 `humanize-korean` skill trigger와 자연어 후속 명령을 사용합니다.
+
+#### 본질 테스트 — 5편 다양성 검증
+
+공식 README에는 v1.5 발행 직후 5편 다양성 테스트 결과도 보강됐습니다. 회차 1 합성 제조업 칼럼 1편과 회차 3 Gemini 직접 호출 4편(핀테크 칼럼, 제조 리포트, 교육 블로그, 헬스케어 정책)을 사용했습니다.
+
+| run | 입력 | 길이 | 변경률 | 등급 |
+|---|---|---|---|---|
+| 003 | 합성 제조 칼럼 | 716자 | 14% | **A** |
+| 004 | Gemini 핀테크 칼럼 | 2,725자 | 18% | **A** |
+| 005 | Gemini 제조 리포트 | 2,572자 | 18% | **A** |
+| 006 | Gemini 교육 블로그 | 2,445자 | 22% | **A** |
+| 007 | Gemini 헬스케어 정책 | 2,316자 | 18% | **A** |
+
+5편 모두 등급 A, 자체검증 6/6 통과, 변경률 안전 구간(10~25%)으로 기록됐습니다.
+
+#### 관련 PR
+
+[#13](https://github.com/epoko77-ai/im-not-ai/pull/13) — v1.5 본 PR
 
 ## v1.3.1 — Codex plugin port for im-not-ai v1.3.1
 
