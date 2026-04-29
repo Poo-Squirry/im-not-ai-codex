@@ -5,11 +5,12 @@ This Codex plugin is a community port of:
 - Original repo: https://github.com/epoko77-ai/im-not-ai
 - Original version label: `v1.5.1`
 - Original release tag: none yet; upstream `main` carries the v1.5.1 taxonomy update
-- Original upstream commit used for this sync: `f6f208245d689744c2a3a79d74a2f79ba626ef62`
+- Original upstream commit used for this sync: `6ad338b93f4185447a8647f4f00afcf55137265d`
 - Codex plugin version: `v1.5.1`
-- Sync date: `2026-04-28`
+- Sync date: `2026-04-29`
 
 Upstream has not published a GitHub release/tag for `v1.5.1` yet. The version label comes from upstream `main` commit `f6f2082`, which updates the taxonomy title and version history to `v1.5.1`.
+The latest sync commit `6ad338b` only updates upstream README community-port links; no runtime reference file changed after the `v1.5.1` taxonomy update.
 
 ## File Mapping
 
@@ -43,6 +44,15 @@ Upstream v1.5.1 changed one runtime reference file:
 - `ai-tell-taxonomy.md`
 
 The update adds Category E pattern `E-4. 단문 일변도 (복문·중문 부재) [S2]`, a rhythm tell for AI output that overuses short simple sentences without compound or complex sentence variation.
+
+## 2026-04-29 Upstream Docs Sync
+
+Upstream `main` added community-port README links after the v1.5.1 taxonomy sync:
+
+- PR #12 added the Codex community plugin link and install command.
+- PR #15 added the opencode Web UI community port link.
+
+This Codex port already uses the Squirbie owner links and remains at plugin version `v1.5.1` because the upstream version label did not change.
 
 ## Codex Adaptation Notes
 

@@ -77,10 +77,17 @@ AI 기술을 통해 우리는 다양한 문제를 해결할 수 있을 것으로
 - strict mode로 시작한다.
 - `02_detection.json`, `03_rewrite.md`, `04_fidelity_audit.json`, `05_naturalness_review.json` 산출물이 생긴다.
 
-## 5. 공식 README 링크 PR 상태
+## 5. 공식 README 링크 상태
 
-원본 공식 repo에는 README 링크만 추가하는 작은 PR을 열어두었습니다.
+원본 공식 repo의 README community-port 링크는 main에 반영됐습니다.
 
-- PR: https://github.com/epoko77-ai/im-not-ai/pull/12
+- PR #12: https://github.com/epoko77-ai/im-not-ai/pull/12
+- 상태: merged `2026-04-29`
 - 범위: README에 Codex community plugin 링크와 설치 명령 추가
 - 의도: 원본 Claude Code 버전은 그대로 두고, Codex 사용자는 이 별도 plugin repo로 안내
+
+원본 README에는 별도 community Web UI 포트도 추가됐습니다.
+
+- PR #15: https://github.com/epoko77-ai/im-not-ai/pull/15
+- 상태: merged `2026-04-29`
+- 범위: opencode 기반 Web UI 링크 추가

@@ -2,6 +2,21 @@
 
 이 repo는 원본 `epoko77-ai/im-not-ai`의 버전을 그대로 따라갑니다. `im-not-ai-codex v1.5.1`은 원본 `im-not-ai v1.5.1` taxonomy update를 Codex plugin/skill 구조로 옮긴 배포판입니다.
 
+## 2026-04-29 — Upstream README community-port sync
+
+Codex 포트 변경:
+
+- SOURCE의 upstream sync commit을 `6ad338b`로 갱신.
+- README에 원본 README의 community-port 링크 업데이트를 반영.
+- PUBLISH의 upstream README PR 상태를 최신 상태로 갱신.
+- Plugin version은 `v1.5.1` 유지. 원본 version label, release, tag 변경 없음.
+
+원본 기준:
+
+- PR #12: Codex community plugin link merged.
+- PR #15: opencode Web UI community port link merged.
+- Runtime reference files changed after `f6f2082`: none.
+
 ## v1.5.1 — Codex plugin port for upstream taxonomy update
 
 Codex 포트 변경:
