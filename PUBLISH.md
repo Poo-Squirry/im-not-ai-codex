@@ -91,3 +91,9 @@ AI 기술을 통해 우리는 다양한 문제를 해결할 수 있을 것으로
 - PR #15: https://github.com/epoko77-ai/im-not-ai/pull/15
 - 상태: merged `2026-04-29`
 - 범위: opencode 기반 Web UI 링크 추가
+
+최신 upstream workflow fix도 반영됐습니다.
+
+- Commit `ebe1328`: run_id 시퀀스 확인을 `_workspace/YYYY-MM-DD-*/01_input.txt` 표지 파일 매칭 방식으로 변경
+- 상태: main 반영 `2026-05-01`
+- Codex port version: `v1.5.1` 유지. 원본 tag/release/version label 변경 없음

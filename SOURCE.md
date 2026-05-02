@@ -5,12 +5,13 @@ This Codex plugin is a community port of:
 - Original repo: https://github.com/epoko77-ai/im-not-ai
 - Original version label: `v1.5.1`
 - Original release tag: none yet; upstream `main` carries the v1.5.1 taxonomy update
-- Original upstream commit used for this sync: `6ad338b93f4185447a8647f4f00afcf55137265d`
+- Original upstream commit used for this sync: `ebe1328faa3e4a45c16c25b81278ee1e201ad41e`
 - Codex plugin version: `v1.5.1`
-- Sync date: `2026-04-29`
+- Sync date: `2026-05-02`
 
 Upstream has not published a GitHub release/tag for `v1.5.1` yet. The version label comes from upstream `main` commit `f6f2082`, which updates the taxonomy title and version history to `v1.5.1`.
-The latest sync commit `6ad338b` only updates upstream README community-port links; no runtime reference file changed after the `v1.5.1` taxonomy update.
+The previous sync commit `6ad338b` only updated upstream README community-port links; no runtime reference file changed after the `v1.5.1` taxonomy update.
+The current upstream sync commit `ebe1328` keeps the same version label and release state, but fixes the skill run_id sequence guidance and documents safer file-access rules in `CLAUDE.md`.
 
 ## File Mapping
 
@@ -53,6 +54,15 @@ Upstream `main` added community-port README links after the v1.5.1 taxonomy sync
 - PR #15 added the opencode Web UI community port link.
 
 This Codex port already uses the Squirbie owner links and remains at plugin version `v1.5.1` because the upstream version label did not change.
+
+## 2026-05-02 Upstream Skill Workflow Sync
+
+Upstream `main` added one post-`v1.5.1` workflow fix:
+
+- Commit `ebe1328` changes run_id sequence discovery from shell directory listing to marker-file matching via `_workspace/YYYY-MM-DD-*/01_input.txt`.
+- `CLAUDE.md` now documents the same file-access rule: prefer dedicated file operations, avoid shell-dependent `ls`/`cat`/`echo` shortcuts for workflow state.
+
+This Codex port adapts the behavior in `skills/humanize-korean/SKILL.md` without changing plugin version `v1.5.1`, because upstream did not publish a new version label, tag, or release.
 
 ## Codex Adaptation Notes
 

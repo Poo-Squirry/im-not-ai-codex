@@ -2,6 +2,21 @@
 
 이 repo는 원본 `epoko77-ai/im-not-ai`의 버전을 그대로 따라갑니다. `im-not-ai-codex v1.5.1`은 원본 `im-not-ai v1.5.1` taxonomy update를 Codex plugin/skill 구조로 옮긴 배포판입니다.
 
+## 2026-05-02 — Upstream run_id workflow sync
+
+Codex 포트 변경:
+
+- SOURCE의 upstream sync commit을 `ebe1328`로 갱신.
+- `skills/humanize-korean/SKILL.md`에 upstream run_id 시퀀스 fix를 반영.
+- 기존 run 탐색을 `_workspace/YYYY-MM-DD-*/01_input.txt` 표지 파일 기준으로 하도록 명시.
+- Plugin version은 `v1.5.1` 유지. 원본 version label, release, tag 변경 없음.
+
+원본 기준:
+
+- Commit `ebe1328`: `Bash ls` 기반 run_id 탐색을 marker-file matching 방식으로 교체.
+- `CLAUDE.md`: 파일 시스템 접근 규칙 신설.
+- Runtime reference files changed after `6ad338b`: `.claude/skills/humanize-korean/SKILL.md` only.
+
 ## 2026-04-29 — Upstream README community-port sync
 
 Codex 포트 변경:

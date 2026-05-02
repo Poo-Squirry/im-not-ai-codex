@@ -13,7 +13,7 @@ Original source baseline:
 - Original repo: `https://github.com/epoko77-ai/im-not-ai`
 - Original version label: `v1.5.1`
 - Original release tag: none yet; upstream `main` carries the v1.5.1 taxonomy update
-- Current upstream commit checked during sync: `f6f208245d689744c2a3a79d74a2f79ba626ef62`
+- Current upstream commit checked during sync: `ebe1328faa3e4a45c16c25b81278ee1e201ad41e`
 
 ## First Response
 
@@ -43,6 +43,7 @@ This Codex port does not require Claude Code `Agent`, `TeamCreate`, slash comman
 4. Do not over-polish. Warn over 30 percent change rate. Stop and report over 50 percent change rate.
 5. Do not mutate bundled reference files. Write all run artifacts under the current working directory's `_workspace/{run_id}/`.
 6. Do not load unrelated project files to infer preferences. Use only the user request, the input text, and this skill's references unless the user points to another file.
+7. For workflow state, prefer explicit file operations over shell-dependent shortcuts. In particular, do not use directory-only listings to decide whether a prior run exists.
 
 ## Reference Files
 
@@ -60,9 +61,13 @@ Treat these as read-only when the skill is installed from a plugin cache.
 
 1. Determine the current working directory.
 2. Create or select `run_id` as `YYYY-MM-DD-NNN`.
-3. New text or no `_workspace/` means a new run.
-4. Follow-up requests such as "이 문단만 다시", "번역투만 더", "강도 낮춰", or "2차 윤문" should reuse the latest run under `_workspace/` when appropriate and switch to strict mode.
-5. Choose mode:
+3. All artifact paths are relative to the current working directory. Create new run folders under `_workspace/{run_id}/`.
+4. For a new run, find existing runs by matching marker files shaped `_workspace/YYYY-MM-DD-*/01_input.txt`, then extract the folder suffix and use the next `NNN`. Do not infer this from matching `_workspace/YYYY-MM-DD-*` directories alone; directory-only matching can miss existing runs in some execution environments.
+5. Avoid shell-only directory listing such as `ls _workspace/` for run_id selection; shell and path behavior can vary across hosts. Prefer the available structured file discovery/read/write/edit tools for existence checks and artifact access.
+6. If no marker file exists for today, use `NNN = 001`.
+7. New text starts a new run; no `_workspace/` or no matching marker file means the new run uses the first available sequence.
+8. Follow-up requests such as "이 문단만 다시", "번역투만 더", "강도 낮춰", or "2차 윤문" should reuse the latest run under `_workspace/` when appropriate and switch to strict mode.
+9. Choose mode:
    - User explicitly asks for `--strict`, "정밀 모드", or "5인 파이프라인": strict.
    - Input is over 8,000 Korean characters: strict and tell the user in one line.
    - Follow-up or partial re-run request: strict.
