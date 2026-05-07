@@ -1,5 +1,26 @@
+# Runtime artifacts (per-run outputs)
 _workspace/
+_workspace_prev/
+
+# macOS
 .DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+
+# Logs
 *.log
 *.tmp
 node_modules/
+
+# Python
+__pycache__/
+*.pyc

@@ -1,7 +1,7 @@
 ---
 name: humanize-korean
-version: "1.5.1"
-description: Use when the user asks to make Korean AI-generated writing sound naturally human while preserving meaning. Trigger phrases include "AI 티 없애줘", "GPT 문체 제거", "사람이 쓴 것처럼 윤문", "번역투 제거", "한글 AI 윤문", "AI 글 사람처럼", "ChatGPT 티 제거", "휴머나이저", and "humanize Korean". This Codex skill is a community plugin port of epoko77-ai/im-not-ai v1.5.1 with fast monolith and strict workflows.
+version: "1.6.1"
+description: Use when the user asks to make Korean AI-generated writing sound naturally human while preserving meaning. Trigger phrases include "AI 티 없애줘", "GPT 문체 제거", "사람이 쓴 것처럼 윤문", "번역투 제거", "한글 AI 윤문", "AI 글 사람처럼", "ChatGPT 티 제거", "휴머나이저", and "humanize Korean". This Codex skill is a community plugin port of epoko77-ai/im-not-ai v1.6.1 with KatFish/LREAD metrics, fast monolith, and strict workflows.
 ---
 
 # Humanize Korean for Codex
@@ -11,25 +11,25 @@ Codex plugin port of `epoko77-ai/im-not-ai`. Detect Korean AI-writing tells, rew
 Original source baseline:
 
 - Original repo: `https://github.com/epoko77-ai/im-not-ai`
-- Original version label: `v1.5.1`
-- Original release tag: none yet; upstream `main` carries the v1.5.1 taxonomy update
-- Current upstream commit checked during sync: `ebe1328faa3e4a45c16c25b81278ee1e201ad41e`
+- Original version label: `v1.6.1`
+- Original release tag: `v1.6.1`
+- Current upstream commit checked during sync: `6138697bc372c7352d8d91fcf22992ddd82fa02e`
 
 ## First Response
 
 When this skill starts, print this line before continuing:
 
 ```text
-humanize-korean codex-port v1.5.1 / original im-not-ai v1.5.1 / {fast|strict} mode / run_id: {YYYY-MM-DD-NNN}
+humanize-korean codex-port v1.6.1 / original im-not-ai v1.6.1 / {fast|strict} mode / run_id: {YYYY-MM-DD-NNN}
 ```
 
 Then continue the workflow in the same response or turn.
 
-## v1.5 Mode Policy
+## v1.6.1 Mode Policy
 
-Official v1.5 rolled back the expensive v1.2-v1.4 hot path and made `humanize-monolith` the default.
+Official v1.6 adds a quantitative KatFish/LREAD metrics layer in front of the v1.5 monolith fast path. Official v1.6.1 keeps that layer and changes fast-mode output so metadata lives inside `final.md` as a `<!-- HUMANIZE-SUMMARY -->` HTML comment.
 
-- **Fast mode (default)**: use the monolith workflow with `references/quick-rules.md`. Best for normal pasted Korean drafts up to about 5,000 characters.
+- **Fast mode (default)**: compute metrics with `references/metrics.py` and `references/baseline.json` when practical, fold the score block into `01_input_with_metrics.txt`, then use the monolith workflow with `references/quick-rules.md`. Best for normal pasted Korean drafts up to about 5,000 characters.
 - **Strict mode**: use the 5-role pipeline with the full taxonomy and playbook. Use it when the user says `--strict`, asks for "정밀 모드" or "5인 파이프라인", input is over 8,000 Korean characters, or the request is a follow-up such as "이 카테고리만 다시" or "2차 윤문".
 - Voice profile, candidate pool, promotion checklist, and sample collection references were removed upstream in v1.5 and must not be reintroduced by this Codex port.
 
@@ -52,6 +52,8 @@ Load only what is needed:
 - Fast rules: `references/quick-rules.md`
 - Full taxonomy: `references/ai-tell-taxonomy.md`
 - Rewriting playbook: `references/rewriting-playbook.md`
+- Quantitative metrics: `references/metrics.py`
+- KatFish/LREAD baseline: `references/baseline.json`
 - Web service spec, only for web/API requests: `references/web-service-spec.md`
 - Original Claude role prompts, for behavior only: `references/agents/*.md`
 
@@ -77,36 +79,44 @@ If input is under 100 Korean characters, continue but mark confidence as low.
 
 ## Fast Mode: Monolith Workflow
 
-Use this for the default path. Act as `humanize-monolith` using `references/quick-rules.md` and, if needed, `references/agents/humanize-monolith.md`.
+Use this for the default path. Act as `humanize-monolith` using `references/quick-rules.md`, the optional metrics shim, and, if needed, `references/agents/humanize-monolith.md`.
 
 ### Phase 1: Input
 
 1. Accept pasted text or a `.txt` or `.md` file path.
 2. Save the original text exactly as `_workspace/{run_id}/01_input.txt`.
 3. Estimate genre from the first 300 characters unless the user specified it.
+4. If local file execution is available, run `scripts/prepare_monolith_input.py --run-dir _workspace/{run_id} --genre {essay|column|report|blog|abstract}` to create:
+   - `_workspace/{run_id}/00_metrics.json`
+   - `_workspace/{run_id}/01_input_with_metrics.txt`
+5. If metrics fail, continue without stopping. Use `01_input.txt` directly and mention the graceful degradation in the summary.
 
 ### Phase 2: Detect, Rewrite, Self-Verify
 
 In one compact pass:
 
 1. Load `references/quick-rules.md`.
-2. Scan for S1 and S2 patterns by category A-J.
-3. Apply the Do-NOT list before editing: names, numbers, dates, direct quotes, legal text, formulas, and standard English abbreviations such as LLM, GPU, MCP, and API.
-4. Rewrite only matched style spans. Preferred order: D -> A -> I -> G -> H -> F -> B -> C/J -> E.
-5. Track edits in memory: `finding_id`, `before`, `after`, category, and reason.
-6. Self-check the six v1.5 criteria from `quick-rules.md`: preservation, change rate, genre, register, S1 residuals, and no artificial expressions.
-7. Roll back any edit that violates preservation or pushes the change rate too far.
+2. Read `01_input_with_metrics.txt` when available; otherwise read `01_input.txt`.
+3. Treat the metrics block as supporting evidence only. Never edit based on a score alone.
+4. Scan for S1 and S2 patterns by category A-J.
+5. Apply the Do-NOT list before editing: names, numbers, dates, direct quotes, legal text, formulas, and standard English abbreviations such as LLM, GPU, MCP, and API.
+6. Rewrite only matched style spans. Preferred order: C-11 -> D -> A -> I -> G -> H -> F -> B -> C/J -> E.
+7. Track edits in memory: `finding_id`, `before`, `after`, category, and reason.
+8. Self-check the six v1.6 criteria from `quick-rules.md`: preservation, change rate, genre, register, S1 residuals, and no artificial expressions.
+9. Roll back any edit that violates preservation or pushes the change rate too far.
 
 ### Phase 3: Fast Artifacts
 
 Write:
 
 - `_workspace/{run_id}/final.md`
-- `_workspace/{run_id}/summary.md`
 
-`summary.md` should include:
+For v1.6.1 fast mode, `final.md` contains the rewritten body followed by exactly one `<!-- HUMANIZE-SUMMARY v1.6.1 ... -->` HTML comment block. Do not write or overwrite `summary.md` in fast mode; preserve any existing `summary.md` from older runs.
+
+The summary comment should include:
 
 - original length, rewritten length, change rate
+- metrics risk band and any high-signal z-scores when `00_metrics.json` exists
 - category counts before and after
 - self-check pass count out of 6
 - quality grade A/B/C/D

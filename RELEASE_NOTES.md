@@ -1,6 +1,45 @@
 # Release Notes
 
-이 repo는 원본 `epoko77-ai/im-not-ai`의 버전을 그대로 따라갑니다. `im-not-ai-codex v1.5.1`은 원본 `im-not-ai v1.5.1` taxonomy update를 Codex plugin/skill 구조로 옮긴 배포판입니다.
+이 repo는 원본 `epoko77-ai/im-not-ai`의 버전을 그대로 따라갑니다. `im-not-ai-codex v1.6.1`은 원본 `im-not-ai v1.6.1`을 Codex plugin/skill 구조로 옮긴 배포판입니다.
+
+## v1.6.1 — Codex plugin port for upstream final.md hotfix
+
+Codex 포트 변경:
+
+- Plugin manifest와 skill metadata를 `1.6.1`로 갱신.
+- upstream `humanize-monolith` role prompt의 `final.md` 통합 산출물 정책을 반영.
+- Fast mode에서 `summary.md`를 새로 쓰지 않고, `final.md` 끝의 `<!-- HUMANIZE-SUMMARY -->` HTML 주석 블록에 메트릭·등급·자체검증·하이라이트를 넣도록 Codex skill workflow를 갱신.
+- `SOURCE.md`, README, PUBLISH 문서를 upstream `v1.6.1` 릴리스와 PR #18 기준으로 갱신.
+
+원본 기준:
+
+- Original repo: https://github.com/epoko77-ai/im-not-ai
+- Original release: https://github.com/epoko77-ai/im-not-ai/releases/tag/v1.6.1
+- Original upstream commit: `6138697bc372c7352d8d91fcf22992ddd82fa02e`
+- Related PR: https://github.com/epoko77-ai/im-not-ai/pull/18
+
+### Original v1.6.1 Notes
+
+v1.6 5편 일괄 검증 중 fast-mode sub-agent가 두 번째 Write(`summary.md`)를 회피하는 패턴이 재현되어, 산출물을 `final.md` 하나로 통합한 hotfix입니다. 본문 끝에 HTML 주석 형태의 `HUMANIZE-SUMMARY` 블록을 넣어 마크다운 게시나 복사 시 본문에는 노출하지 않으면서, 메트릭과 검증 메타데이터는 파일 안에 보존합니다.
+
+## v1.6.0 — Codex plugin port for upstream metrics layer
+
+Codex 포트 변경:
+
+- `baseline.json`과 `metrics.py`를 Codex reference 파일로 추가.
+- `scripts/prepare_monolith_input.py`를 Codex plugin layout에 맞게 조정해 `skills/humanize-korean/references/metrics.py`를 사용하도록 변경.
+- upstream `tests/test_metrics.py`를 Codex path 기준으로 조정.
+- `quick-rules.md`, `ai-tell-taxonomy.md`, role prompt를 upstream v1.6 기준으로 동기화.
+- Codex skill fast workflow에 metrics pre-processing, `00_metrics.json`, `01_input_with_metrics.txt`, graceful-degrade 규칙을 추가.
+
+원본 기준:
+
+- Original release: https://github.com/epoko77-ai/im-not-ai/releases/tag/v1.6.0
+- Related PR: https://github.com/epoko77-ai/im-not-ai/pull/17
+
+### Original v1.6.0 Notes
+
+KatFish(Park et al.)와 LREAD 정량 연구를 반영해 한국어 AI 티의 쉼표·연결어미·결산 lexicon·안전 균형 lexicon 신호를 계산합니다. monolith 자체는 그대로 두고, 사전처리된 점수 블록을 입력에 prepend해 도구 호출 캡을 보존합니다.
 
 ## 2026-05-02 — Upstream run_id workflow sync
 
@@ -46,7 +85,7 @@ Codex 포트 변경:
 
 - Original repo: https://github.com/epoko77-ai/im-not-ai
 - Original upstream commit: `f6f208245d689744c2a3a79d74a2f79ba626ef62`
-- Original GitHub release: 아직 `v1.5.1` release/tag 없음. 현재 최신 release는 `v1.5.0`.
+- Original GitHub release: 아직 `v1.5.1` release/tag 없음. 당시 최신 release는 `v1.5.0`.
 
 ### Original v1.5.1 Notes
 
