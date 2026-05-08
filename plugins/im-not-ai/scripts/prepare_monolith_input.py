@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Humanize KR v1.6 — monolith input shim.
+"""Humanize KR v2.0 — monolith input shim.
 
 Pre-processes user input by computing v1.6 quantitative metrics and
 prepending the result to the text the monolith agent reads. The monolith
@@ -46,10 +46,15 @@ METRICS_DIR = PROJECT_ROOT / "skills" / "humanize-korean" / "references"
 
 # Make metrics.py importable without polluting global state.
 sys.path.insert(0, str(METRICS_DIR))
+# v2.0 우선 import — compute_all 별칭으로 v1.6 호환. metrics_v2 부재·로드 실패 시
+# v1.6 metrics fallback. graceful degrade로 monolith 동작은 항상 보장.
 try:
-    import metrics as _metrics_mod  # type: ignore
-except Exception:  # pragma: no cover — module import itself failing.
-    _metrics_mod = None
+    import metrics_v2 as _metrics_mod  # type: ignore  # v2.0 (post-editese 14 metric)
+except Exception:  # pragma: no cover
+    try:
+        import metrics as _metrics_mod  # type: ignore  # v1.6 fallback
+    except Exception:
+        _metrics_mod = None
 
 
 # ---------------------------------------------------------------------------
@@ -115,7 +120,7 @@ def _render_block(metrics_obj: dict) -> str:
     safe = ev.get("safe_balances") or []
 
     lines: list[str] = []
-    lines.append("[정량 사전 점수 v1.6 / KatFish baseline]")
+    lines.append("[정량 사전 점수 v2.0 / KatFish + post-editese baseline]")
     lines.append(
         f"risk_band: {metrics_obj.get('risk_band', 'unknown')}  "
         f"(score {metrics_obj.get('risk_score', 0)})"
@@ -151,6 +156,30 @@ def _render_block(metrics_obj: dict) -> str:
     )
     lines.append(row("hanja_nominalizer_density", "{:.3f}"))
     lines.append(row("lexical_diversity", "{:.2f}"))
+    v2 = metrics_obj.get("v2_metrics") or {}
+    interference = metrics_obj.get("v2_interference_index") or {}
+    if v2:
+        lines.append("")
+        lines.append("[v2.0 post-editese 보조 지표]")
+        for key in (
+            "lexical_diversity_ttr",
+            "lexical_density",
+            "ending_diversity",
+            "normalisation_score",
+            "inanimate_subject_rate",
+            "pronoun_density",
+            "relative_clause_nesting",
+            "double_particle_count",
+            "progressive_aspect_rate",
+        ):
+            val = v2.get(key)
+            if val is not None:
+                lines.append(f"- {key}: {val:.3f}" if isinstance(val, float) else f"- {key}: {val}")
+    if interference:
+        lines.append(
+            f"- interference_index: {interference.get('score', 0):.3f} "
+            f"(signals: {', '.join(interference.get('positive_signals', [])) or 'none'})"
+        )
     lines.append("")
     lines.append("[근거 사용 가이드]")
     lines.append("- 위 점수는 *근거 보조*다. 단독 판정 금지(보고서 명시).")
@@ -178,7 +207,7 @@ def _render_combined(text: str, metrics_obj: dict | None) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
-    p = argparse.ArgumentParser(description="Humanize KR v1.6 monolith input shim")
+    p = argparse.ArgumentParser(description="Humanize KR v2.0 monolith input shim")
     p.add_argument("--run-dir", help="Existing run directory (relative ok)")
     p.add_argument("--text", help="Inline text input (creates new run dir)")
     p.add_argument("--genre", default="essay", help="Genre hint (default: essay)")

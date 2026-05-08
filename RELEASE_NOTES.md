@@ -1,6 +1,25 @@
 # Release Notes
 
-이 repo는 원본 `epoko77-ai/im-not-ai`의 버전을 그대로 따라갑니다. `im-not-ai-codex v1.6.1`은 원본 `im-not-ai v1.6.1`을 Codex plugin/skill 구조로 옮긴 배포판입니다.
+이 repo는 원본 `epoko77-ai/im-not-ai`의 버전을 그대로 따라갑니다. `im-not-ai-codex v2.0.0`은 원본 `im-not-ai v2.0.0`을 Codex plugin/skill 구조로 옮긴 배포판입니다.
+
+## v2.0.0 — Codex plugin port for Korean scholarship + post-editese metrics
+
+Codex 포트 변경:
+
+- Plugin manifest와 skill metadata를 `2.0.0`으로 갱신.
+- upstream `v2.0.0`의 한국 번역학계 8유형 기반 taxonomy 확장과 `scholarship.md`를 Codex reference로 동기화.
+- `metrics_v2.py`와 `baseline_v2.json`을 추가하고, monolith input shim이 v2 metrics를 먼저 쓰되 실패 시 v1.6 metrics로 graceful fallback 하도록 조정.
+- 새 보조 role prompt 5종을 `references/agents/`에 보존.
+- upstream v2.0 social preview와 v2 metric tests를 Codex plugin layout에 맞게 반영.
+- thumbnail generator를 Squirbie footer URL과 macOS font fallback에 맞게 조정.
+- README, SOURCE, PUBLISH 문서를 upstream `v2.0.0` 릴리스와 PR #19-#23 기준으로 갱신.
+
+원본 기준:
+
+- Original repo: https://github.com/epoko77-ai/im-not-ai
+- Original release: https://github.com/epoko77-ai/im-not-ai/releases/tag/v2.0.0
+- Original upstream commit: `807172694d75a9e9e0390f93331387c389ce748e`
+- Related PRs: https://github.com/epoko77-ai/im-not-ai/pull/19, https://github.com/epoko77-ai/im-not-ai/pull/20, https://github.com/epoko77-ai/im-not-ai/pull/21, https://github.com/epoko77-ai/im-not-ai/pull/22, https://github.com/epoko77-ai/im-not-ai/pull/23
 
 ## v1.6.1 — Codex plugin port for upstream final.md hotfix
 

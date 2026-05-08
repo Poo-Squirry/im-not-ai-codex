@@ -61,7 +61,7 @@ AI 기술을 통해 우리는 다양한 문제를 해결할 수 있을 것으로
 
 기대 동작:
 
-- `humanize-korean codex-port v1.6.1` 시작 라인이 나온다.
+- `humanize-korean codex-port v2.0.0` 시작 라인이 나온다.
 - `_workspace/{run_id}/` 산출물이 생긴다.
 - 핵심 의미는 유지하고 문체만 다듬는다.
 - 기본 fast mode에서는 `final.md`를 만들고, 파일 끝의 `<!-- HUMANIZE-SUMMARY -->` HTML 주석 블록에 변경률·등급·자체검증 요약을 담는다.
@@ -94,9 +94,12 @@ AI 기술을 통해 우리는 다양한 문제를 해결할 수 있을 것으로
 - 상태: merged `2026-04-29`
 - 범위: opencode 기반 Web UI 링크 추가
 
-최신 upstream v1.6.1도 반영됐습니다.
+최신 upstream v2.0.0도 반영됐습니다.
 
-- PR #17: https://github.com/epoko77-ai/im-not-ai/pull/17
-- PR #18: https://github.com/epoko77-ai/im-not-ai/pull/18
-- Release: https://github.com/epoko77-ai/im-not-ai/releases/tag/v1.6.1
-- Codex port version: `v1.6.1`
+- PR #19: https://github.com/epoko77-ai/im-not-ai/pull/19
+- PR #20: https://github.com/epoko77-ai/im-not-ai/pull/20
+- PR #21: https://github.com/epoko77-ai/im-not-ai/pull/21
+- PR #22: https://github.com/epoko77-ai/im-not-ai/pull/22
+- PR #23: https://github.com/epoko77-ai/im-not-ai/pull/23
+- Release: https://github.com/epoko77-ai/im-not-ai/releases/tag/v2.0.0
+- Codex port version: `v2.0.0`
